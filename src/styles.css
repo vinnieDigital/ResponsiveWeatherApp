@@ -1,0 +1,71 @@
+:root {
+  --color-ghostwhite: #f8f8ff;
+  --color-blue: #9daaf2;
+  --color-darkblue: #1a2238;
+  --color-deepblue: #0c86d5;
+  --color-maroon: #a31452;
+  --color-orange: #ff6a3d;
+  --color-goldenrod: #f4db7d;
+  --size46: 46.97rem;
+  --size17: 17.942rem;
+  --size11: 11.089rem;
+  --size7: 7.654rem;
+  --size6: 6.854rem;
+  --size4: 4.236rem;
+  --size2: 2.618rem;
+  --size1: 1.618rem;
+  --sizeBase: 1rem;
+  --size06: 0.618rem;
+  --size03: 0.382rem;
+  font-size: clamp(0.625rem, 0rem + 1.1111vw, 1rem);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: 1;
+}
+
+h1 {
+  font-size: var(--size6);
+  white-space: pre-line;
+}
+p {
+  font-size: var(--size1);
+  line-height: 1.2;
+}
+
+input {
+  font-size: var(--size2);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-ghostwhite);
+  font-family: 'Rethink Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-darkblue);
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
