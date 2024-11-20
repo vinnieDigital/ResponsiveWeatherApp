@@ -1,12 +1,26 @@
 :root {
   --color-ghostwhite: #f8f8ff;
+  --color-ghostgrey: #cecee2;
   --color-blue: #9daaf2;
   --color-darkblue: #1a2238;
   --color-deepblue: #0c86d5;
   --color-maroon: #a31452;
   --color-orange: #ff6a3d;
   --color-goldenrod: #f4db7d;
-  --size46: 46.97rem;
+
+
+  --step--4: clamp(0.1459rem, 0.1042rem + 0.2084vw, 0.2918rem);
+  --step--3: clamp(0.2361rem, 0.1686rem + 0.3373vw, 0.4722rem);
+  --step--2: clamp(0.382rem, 0.2728rem + 0.5457vw, 0.764rem);
+  --step--1: clamp(0.618rem, 0.4415rem + 0.8829vw, 1.2361rem);
+  --step-0: clamp(1rem, 0.7143rem + 1.4286vw, 2rem);
+  --step-1: clamp(1.618rem, 1.1557rem + 2.3114vw, 3.236rem);
+  --step-2: clamp(2.6179rem, 1.8699rem + 3.7399vw, 5.2358rem);
+  --step-3: clamp(4.2358rem, 3.0256rem + 6.0511vw, 8.4716rem);
+  --step-4: clamp(6.8535rem, 4.8954rem + 9.7908vw, 13.7071rem);
+  
+
+  /* --size46: 46.97rem;
   --size17: 17.942rem;
   --size11: 11.089rem;
   --size7: 7.654rem;
@@ -17,7 +31,7 @@
   --sizeBase: 1rem;
   --size06: 0.618rem;
   --size03: 0.382rem;
-  font-size: clamp(0.625rem, 0rem + 1.1111vw, 1rem);
+  font-size: clamp(0.625rem, 0rem + 1.1111vw, 1rem); */
 }
 
 * {
@@ -29,16 +43,12 @@
 }
 
 h1 {
-  font-size: var(--size6);
+  font-size: var(--step-2);
   white-space: pre-line;
 }
 p {
   font-size: var(--size1);
   line-height: 1.2;
-}
-
-input {
-  font-size: var(--size2);
 }
 
 body {

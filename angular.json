@@ -33,7 +33,6 @@
             "polyfills": ["zone.js"],
             "scripts": [],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "tsConfig": "tsconfig.app.json"

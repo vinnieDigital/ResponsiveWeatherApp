@@ -20,9 +20,9 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   template: `
     <div class="container">
-      <h1 class="mainheader">{{ weatherData ? 'Weather for\n'+ weatherData.location.name + ', ' + weatherData.location.region: 'Responsive Modern Weather Application' }}</h1>
+      <h1 class="mainheader">Weather for</h1>
       
-      <app-search-box *ngIf="!weatherData" (searchEvent)="searchWeather($event)"></app-search-box>
+      <app-search-box [ngClass]="{'searched': weatherData}" [placeholder]="searchPlaceholder" (searchEvent)="searchWeather($event)"></app-search-box>
       <app-weather-display *ngIf="weatherData" [weather]="weatherData"></app-weather-display>
       
       <p class="error" *ngIf="error">{{ error }}</p>
@@ -32,12 +32,11 @@ import { MatIconModule } from '@angular/material/icon';
     `
     .container {
       width: min(80vw, 1440px);
-      margin: var(--size7) auto;
+      margin: var(--step-0) auto;
     }
     .mainheader {
-      margin-block: 0 var(--size4);
       color: var(--color-orange);
-      overflow-wrap: break-word;
+      font-weight: 700;
     }
     .error {
       color: red;
@@ -65,6 +64,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class App {
   weatherData?: WeatherData;
   error = '';
+  searchPlaceholder = 'Zip Code or City';
 
   constructor(
     private weatherService: WeatherService,
@@ -89,6 +89,8 @@ export class App {
     this.weatherService.getWeather(location).subscribe({
       next: (data) => {
         this.weatherData = data;
+        this.searchPlaceholder = this.weatherData.location.name;
+        console.log(this.weatherData.location.name);
         // Push a new state to browser history when weather is loaded
         history.pushState({ weatherData: data }, '', `?location=${location}`);
       },

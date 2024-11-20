@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, ElementRef} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -7,53 +7,57 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [FormsModule, MatIconModule],
   template: `
-    <div class="search-box">
       <input 
+        #searchInput
         [(ngModel)]="location" 
-        placeholder="ZIP CODE"
+        [placeholder]="placeholder"
         (keyup.enter)="onSearch()"
       >
-      <button class="search-button" (click)="onSearch()">
-        <mat-icon inline=true>search</mat-icon>
-      </button>
-    </div>
   `,
   styles: [
     `
-    .search-box {
-      display: flex;
-      gap: var(--sizeBase);
-      margin-bottom: var(--size2);
-    }
     input {
-      padding: var(--sizeBase) var(--size1);
-      border: var(--size03) dotted var(--color-orange);
-      border-radius: var(--size2);
-      background: repeating-linear-gradient(
-        -45deg,
-        var(--color-goldenrod),
-        var(--color-goldenrod) 2px,
-        var(--color-ghostwhite) 1px,
-        var(--color-ghostwhite) 4px
-      );
-      transition: background-color 1s, border-color 0.618s;
+      font-size: var(--step-2);
+      font-family: inherit;
+      color: var(--color-orange);
+      font-weight: 700;
+      border-bottom: var(--step--4) dotted var(--color-ghostgrey);
+      background: transparent;
+      transition: border-bottom 0.168s ease-in;
     }
+    
     input:focus {    
-      border-color: var(--color-deepblue);;
+      border-color: var(--color-orange);
       outline: none;
-      background: repeating-linear-gradient(
-        -45deg,
-        var(--color-ghostwhite),
-        var(--color-ghostwhite) 2px,
-        var(--color-goldenrod) 1px,
-        var(--color-goldenrod) 4px
-      );
     }
-    input::placeholder {    
-      color: var(--color-blue);
-      font-style: italic;
+    input::placeholder {
+      color: var(--color-ghostgrey);
       overflow: hidden;
+      transition: color 0.168s ease-in;
     }
+    input:focus::placeholder {
+      color: var(--color-orange);
+    }
+
+    :host.searched input {    
+      border-color: var(--color-orange);
+    }
+    :host.searched input:focus {    
+      border-color: var(--color-ghostgrey);
+    }
+
+    :host.searched input:focus:not(:placeholder-shown) {
+      border-color: var(--color-orange);
+    }
+    
+    :host.searched input::placeholder {
+      color: var(--color-orange);
+    }
+    :host.searched input:focus::placeholder {
+      color: var(--color-ghostgrey);
+    }
+    
+
 
     button.search-button {
       background-color: transparent;
@@ -69,11 +73,17 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class SearchBoxComponent {
   location = '';
+
+  @Input() placeholder = 'Zip Code or City';
   @Output() searchEvent = new EventEmitter<string>();
+  @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;;
+
 
   onSearch() {
     if (this.location.trim()) {
       this.searchEvent.emit(this.location);
+      this.location = '';
+      this.searchInput.nativeElement.blur();
     }
   }
 }
