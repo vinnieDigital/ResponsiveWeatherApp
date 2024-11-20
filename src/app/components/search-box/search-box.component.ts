@@ -16,11 +16,17 @@ import { MatIconModule } from '@angular/material/icon';
   `,
   styles: [
     `
+    :host {
+      display: block;
+      margin-bottom: var(--step-0);
+    }
     input {
+      width: 100%;
+      padding-block-end: var(--step--2);
       font-size: var(--step-2);
       font-family: inherit;
-      color: var(--color-orange);
       font-weight: 700;
+      color: var(--color-orange);
       border-bottom: var(--step--4) dotted var(--color-ghostgrey);
       background: transparent;
       transition: border-bottom 0.168s ease-in;
@@ -49,26 +55,15 @@ import { MatIconModule } from '@angular/material/icon';
     :host.searched input:focus:not(:placeholder-shown) {
       border-color: var(--color-orange);
     }
-    
+
     :host.searched input::placeholder {
       color: var(--color-orange);
     }
+    
     :host.searched input:focus::placeholder {
       color: var(--color-ghostgrey);
     }
-    
-
-
-    button.search-button {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-    }
-    .search-button mat-icon {
-      color: var(--color-deepblue);
-      font-size: var(--size2);
-    }
-  `,
+  `
   ],
 })
 export class SearchBoxComponent {
