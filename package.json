@@ -1,5 +1,5 @@
 {
-  "name": "angular-starter",
+  "name": "responsive-weather-app",
   "private": true,
   "scripts": {
     "ng": "./node_modules/.bin/ng",
