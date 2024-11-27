@@ -2,9 +2,9 @@
   "name": "responsive-weather-app",
   "private": true,
   "scripts": {
-    "ng": "./node_modules/.bin/ng",
-    "start": "./node_modules/.bin/ng serve",
-    "build": "./node_modules/.bin/ng build"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build"
   },
   "dependencies": {
     "@angular/animations": "^18.2.11",
@@ -16,11 +16,12 @@
     "@angular/platform-browser": "^18.2.11",
     "@angular/platform-browser-dynamic": "^18.2.11",
     "@angular/router": "^18.2.11",
-    "axios": "^1.7.7",
+    "axios": "^1.7.8",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "normalize.css": "^8.0.1",
+    "openai": "^4.73.1",
     "rxjs": "^7.8.1",
     "tslib": "^2.5.0",
     "zone.js": "~0.14.0"
@@ -32,5 +33,11 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.9.1",
     "typescript": "~5.5.0"
-  }
+  },
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

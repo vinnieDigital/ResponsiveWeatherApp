@@ -9,6 +9,7 @@ import { WeatherData } from '../../models/weather.model';
   template: `
     <div class="weather-info" *ngIf="weather">
         <div class="current-wrapper">
+        
           <p class="temp">{{ weather.current.temp_f | number : '1.0-0' }}<sup>°F</sup></p>
           <div class="condition-wrapper">
             <img class="weather-icon" [src]="weather.current.condition.icon" [alt]="weather.current.condition.text">

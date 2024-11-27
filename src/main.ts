@@ -8,6 +8,7 @@ import { WeatherService } from './app/services/weather.service';
 import { WeatherData } from './app/models/weather.model';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { ImageService } from './app/services/image.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
       
       <app-search-box [ngClass]="{'searched': weatherData}" [placeholder]="searchPlaceholder" (searchEvent)="searchWeather($event)"></app-search-box>
       <app-weather-display *ngIf="weatherData" [weather]="weatherData"></app-weather-display>
-      
+      <img *ngIf="imageUrl" [src]="imageUrl" alt="Weather in City">
       <p class="error" *ngIf="error">{{ error }}</p>
     </div>
   `,
@@ -65,10 +66,12 @@ export class App {
   weatherData?: WeatherData;
   error = '';
   searchPlaceholder = 'Zip Code or City';
+  imageUrl = '';
 
   constructor(
     private weatherService: WeatherService,
-    private location: Location
+    private location: Location,
+    private imageService: ImageService
   ) {
     // Listen for popstate (browser back/forward) events
     window.onpopstate = (event) => {
@@ -91,6 +94,8 @@ export class App {
         this.weatherData = data;
         this.searchPlaceholder = this.weatherData.location.name;
         console.log(this.weatherData.location.name);
+        this.generateImage();
+         
         // Push a new state to browser history when weather is loaded
         history.pushState({ weatherData: data }, '', `?location=${location}`);
       },
@@ -98,6 +103,18 @@ export class App {
         this.error = 'Failed to fetch weather data. Please try again.';
         console.error('Weather API Error:', err);
       },
+    });
+
+    
+  }
+
+  generateImage() {
+    console.log("key", process.env.OPENAI_API_KEY);
+    const condition = 'rainy';
+    const location = 'cleveland';
+    this.imageService.generateImage(condition, location).subscribe((data) => {
+      console.log("data", data);
+      // this.imageUrl = response.data.data[0].url;
     });
   }
 
