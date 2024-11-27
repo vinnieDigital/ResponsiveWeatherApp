@@ -9,7 +9,7 @@ export class ImageService {
   constructor(private http: HttpClient) {}
 
   generateImage(condition: string, location: string) {
-    const apiKey = import.meta.env.OPENAI_API_KEY;
+    const apiKey = '222';
     const prompt = `A ${condition} view of ${location}, cityscape with landmarks`;
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + apiKey);
     const response = {

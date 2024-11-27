@@ -9,6 +9,7 @@ import { WeatherData } from './app/models/weather.model';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { ImageService } from './app/services/image.service';
+import { BaseApiService } from './app/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -71,7 +72,8 @@ export class App {
   constructor(
     private weatherService: WeatherService,
     private location: Location,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private apiService: BaseApiService
   ) {
     // Listen for popstate (browser back/forward) events
     window.onpopstate = (event) => {
@@ -94,7 +96,7 @@ export class App {
         this.weatherData = data;
         this.searchPlaceholder = this.weatherData.location.name;
         console.log(this.weatherData.location.name);
-        this.generateImage();
+        // this.generateImage();
          
         // Push a new state to browser history when weather is loaded
         history.pushState({ weatherData: data }, '', `?location=${location}`);
@@ -108,15 +110,15 @@ export class App {
     
   }
 
-  generateImage() {
-    console.log("key", process.env.OPENAI_API_KEY);
-    const condition = 'rainy';
-    const location = 'cleveland';
-    this.imageService.generateImage(condition, location).subscribe((data) => {
-      console.log("data", data);
-      // this.imageUrl = response.data.data[0].url;
-    });
-  }
+  // generateImage() {
+  //   const condition = 'rainy';
+  //   const location = 'cleveland';
+  //   this.apiService.getData();
+  //   this.imageService.generateImage(condition, location).subscribe((data) => {
+  //     console.log("data", data);
+  //     // this.imageUrl = response.data.data[0].url;
+  //   });
+  // }
 
   goBack() {
     this.location.back();
