@@ -1,13 +1,13 @@
 export const environment = {
   production: false,
   apis: {
-    mainApi: {
+    imageApi: {
       key: '123',
-      baseUrl: 'https://api.main-service.com'
+      baseUrl: 'https://api.openai.com/v1/images/generations'
     },
-    secondaryApi: {
+    weatherApi: {
       key: '321',
-      baseUrl: 'https://api.secondary-service.com'
+      baseUrl: 'https://api.weatherapi.com/v1'
     }
   }
 };

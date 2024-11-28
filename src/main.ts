@@ -9,7 +9,6 @@ import { WeatherData } from './app/models/weather.model';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { ImageService } from './app/services/image.service';
-import { BaseApiService } from './app/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -73,7 +72,6 @@ export class App {
     private weatherService: WeatherService,
     private location: Location,
     private imageService: ImageService,
-    private apiService: BaseApiService
   ) {
     // Listen for popstate (browser back/forward) events
     window.onpopstate = (event) => {

@@ -17,7 +17,6 @@ export abstract class BaseApiService {
   }
 
   protected buildUrl(endpoint: string): string {
-    console.log("apistring",`${this.config.baseUrl}/${endpoint}`);
     return `${this.config.baseUrl}/${endpoint}`;
   }
 }

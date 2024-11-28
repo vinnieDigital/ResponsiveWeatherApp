@@ -6,7 +6,7 @@ export interface ApiConfig {
 export interface Environment {
   production: boolean;
   apis: {
-    mainApi: ApiConfig;
-    secondaryApi: ApiConfig;
+    imageApi: ApiConfig;
+    weatherApi: ApiConfig;
   };
 }
