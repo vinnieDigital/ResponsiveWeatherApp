@@ -5,22 +5,6 @@ import { WeatherData } from '../models/weather.model';
 import { environment } from '../../environments/environment';
 import { BaseApiService } from '../services/api.service';
 
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class WeatherService {
-//   private apiKey = '0a6c6b36f4094b77a4730909241211';
-//   private baseUrl = 'https://api.weatherapi.com/v1';
-
-//   constructor(private http: HttpClient) {}
-
-//   getWeather(location: string): Observable<WeatherData> {
-//     return this.http.get<WeatherData>(
-//       `${this.baseUrl}/current.json?key=${this.apiKey}&q=${location}`
-//     );
-//   }
-// }
-
 @Injectable({
   providedIn: 'root'
 })
@@ -30,14 +14,15 @@ export class WeatherService extends BaseApiService {
   }
 
   getWeather(location: string): Observable<WeatherData> {
+
+    var urlString = '';
+    urlString = `/current.json?key=${environment.apis.weatherApi.key}&q=${location}`
+
     return this.http.get<WeatherData>(
-      this.buildUrl(location),
+      this.buildUrl(urlString),
       { headers: this.getHeaders() }
     );
   }
-
-  // Add more specific methods for main API
-  
 }
 
 
